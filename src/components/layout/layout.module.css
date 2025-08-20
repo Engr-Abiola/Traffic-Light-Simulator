@@ -1,0 +1,14 @@
+.mainLayout{
+    width: 200px;
+    background-color: rgba(173, 168, 168, 0.275);
+    position: relative;
+    display :flex;
+  flex-direction: column; 
+}
+
+.comps{
+   display: grid;
+   grid-template-columns: 2fr 1fr;
+   background-color: rebeccapurple;
+   gap:10px
+}
