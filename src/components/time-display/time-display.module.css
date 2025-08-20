@@ -1,0 +1,18 @@
+.timer{
+    background-color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* width: 70px;  */
+    width:auto;
+    border: 2px double red;
+    margin-bottom: 5px;
+    /* flex: 3; */
+}
+
+.time{
+    color:red;
+    font-size: larger;
+    font-weight: 800;
+    font-family:Times New Roman;
+    }

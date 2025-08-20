@@ -1,0 +1,13 @@
+.lights{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    height: 220px;
+    /* width: 70px; */
+    width: auto;
+    background-color: inherit;
+    justify-content: center;
+    align-items: center;
+    /* grid-column: span2; */
+    border: 2px solid gray;
+}
