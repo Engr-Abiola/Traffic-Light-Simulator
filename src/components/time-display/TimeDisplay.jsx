@@ -1,7 +1,7 @@
 import styles from './time-display.module.css';
 import { useState, useEffect} from 'react';
 
-const TimeDisplay = ( {displayTime, display, handleLightToggle, animate} ) => {
+const TimeDisplay = ( {displayTime, display, handleLightToggle, animate, setGetReady} ) => {
    const [initialTime, setInitialTime] = useState( {init_time : 15} );
    const [light_timer, setLight_timer] = useState( {time : 36} );
 
@@ -23,10 +23,10 @@ useEffect( ()=>{
    return ()=> clearInterval(intervalId); // clean-up the setInterval
 }, [handleLightToggle] );
 
-//display the lights at the initialTime(15) countdown
+//display the lights at the initialTime(15) countdown 
 useEffect( ()=>{
-     handleLightToggle({green:true, yellow:true, red:true});
-}, [handleLightToggle]) ;
+     handleLightToggle( {green:true, yellow:true, red:true} );
+}, [handleLightToggle] ) ;
 
 //Animates the lights(ONLY) when the initialTime(the initial countdown time) is > 1
 useEffect( ()=>{
@@ -34,7 +34,19 @@ useEffect( ()=>{
       animate(false);
 }, [animate, initialTime] );
 
-//checks if init_time is 1, if it is then update checkTime
+//Animates the lights(ONLY) when the light_timer(the lights countdown time) is <= 14 and > 7 or <= 3 and != 0
+useEffect( ()=>{
+   if(time <=14 && time > 7){
+       setGetReady( {green : true, yellow : true, red : false} );
+   }  
+    else if(time <=3 && time !== 0){
+        setGetReady( {green : false, yellow : true, red : true} );
+    }  
+    else
+       setGetReady( {green : false, yellow : false, red : false} );
+}, [setGetReady, time] );
+
+//checks if init_time is 1, if it is then set displayTime to true, which will display the light_timer countdown and hide the init_time countdown
 //uses the state of checkTime to display either init_time or time
 useEffect( ()=>{
     if(init_time === 1)

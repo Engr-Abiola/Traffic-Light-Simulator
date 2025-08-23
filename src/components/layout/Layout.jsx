@@ -12,8 +12,8 @@ const Layout = () => {
 
   const [isAnimate, setIsAnimate] = useState(true); // monitors the animation of the lights, if true, then the lights are animated, else they are not animated
   
-//  const [lightAndTimeControl, setLightAndTimeControl] = useState(true); // controls the light_timer, if true, then the light_timer is off, else it is on
-
+ const [getReady, setGetReady] = useState( {green : false, yellow : false, red : false} ); // monitors the about to stop and the about to go of the green light and red light respectively.
+ 
 // I used this method in other to prevent multiple call of setLightStatus
   const handleLightToggle = useCallback ( newObject =>{
     setLightStatus(newObject);
@@ -27,10 +27,10 @@ const Layout = () => {
 
   return (
     <div className={styles.mainLayout}>
-        <TimeDisplay displayTime={displayTime} display={setDisplayTime} handleLightToggle={handleLightToggle} animate={handleAnimation} /* lightAndTimeControl={lightAndTimeControl} */ />
+        <TimeDisplay displayTime={displayTime} display={setDisplayTime} handleLightToggle={handleLightToggle} animate={handleAnimation} setGetReady={setGetReady} />
 
         <div className={styles.comps}>
-              <LightsLayout displayTime={displayTime}  lightStatus={lightStatus} isAnimate={isAnimate} />
+              <LightsLayout displayTime={displayTime}  lightStatus={lightStatus} isAnimate={isAnimate} getReady={getReady} />
               <Switches display={setDisplayTime} setIsAnimate={setIsAnimate} lightStatus={handleLightToggle} /* setLightAndTimeControl={setLightAndTimeControl} lightAndTimeControl={lightAndTimeControl} *//>
         </div>
 
