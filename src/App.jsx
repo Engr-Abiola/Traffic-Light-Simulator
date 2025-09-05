@@ -1,11 +1,12 @@
-import Layout from "./components/layout/Layout"
+import Layout from "./components/layout/Layout";
+import './App.css';
 
 const App = () => {
   return (
-    <div>
+    <div className="parent">
         <Layout />
     </div>
   )
 }
 
-export default App
+export default App;

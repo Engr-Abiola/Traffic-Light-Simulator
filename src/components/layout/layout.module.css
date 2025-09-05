@@ -3,7 +3,7 @@
     background-color: rgba(173, 168, 168, 0.275);
     position: relative;
     display :flex;
-  flex-direction: column; 
+   flex-direction: column; 
 }
 
 .comps{

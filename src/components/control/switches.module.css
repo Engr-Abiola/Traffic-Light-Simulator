@@ -5,22 +5,24 @@
     /* position: absolute; 
     left: 110px;
     top:80px; */
-    border: 2px solid red;
+    border: 2px solid black;
 }
 
 .buttons{
-    display: flex;
-    flex-direction: column;
-    gap:15px;
-    background-color: inherit;
+    height: 80px;
+    width: inherit;
 }
-.on, .off{
+
+.button_on, .button_off{
     cursor: pointer;
     border: none;
     font-weight: 800;
-    background-color: gainsboro;
+    font-family: cursive;
+    height: 40px;
+    width: 100%;    
+    transition: transform 2s ease; /* smooth flip and move */
 }
 
-.on{color: rgb(16, 210, 16);}
+.button_on{background-color: rgb(16, 210, 16); color: white; }
 
-.off{color: red}
+.button_off{background-color: red; color:white ;  transform: rotateX(360deg) translateY(40px);} /*  transform: rotateX(360deg) translateY(100px); */

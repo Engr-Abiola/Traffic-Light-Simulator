@@ -1,27 +1,28 @@
 import styles from './time-display.module.css';
-import { useState, useEffect} from 'react';
+import { /* useState, */ useEffect} from 'react';
 
-const TimeDisplay = ( {displayTime, display, handleLightToggle, animate, setGetReady} ) => {
-   const [initialTime, setInitialTime] = useState( {init_time : 15} );
-   const [light_timer, setLight_timer] = useState( {time : 36} );
+const TimeDisplay = ( {displayTime, display, handleLightToggle, animate, setGetReady, initialTime, setInitialTime, light_timer, setLight_timer} ) => {
 
-   const{init_time} = initialTime; //shadow copy
+   //const{init_time} = initialTime; //shadow copy
    const{time} = light_timer;
 
 //displays the initial time immediately the app loads
 useEffect( ()=>{
     const intervalId = setInterval( ()=>{
         setInitialTime( t =>{
-            let timing = t.init_time ;
+            let timing = t?.init_time ;
              if(timing === 1){
                    return {init_time:1};
              }
-             
-             return {init_time : timing -1};
+             else if(timing ===''){
+                 return {init_time : ''};
+             }
+             else
+                return {init_time : timing -1};
         } )
     },1000 );
    return ()=> clearInterval(intervalId); // clean-up the setInterval
-}, [handleLightToggle] );
+}, [handleLightToggle, setInitialTime] );
 
 //display the lights at the initialTime(15) countdown 
 useEffect( ()=>{
@@ -30,7 +31,7 @@ useEffect( ()=>{
 
 //Animates the lights(ONLY) when the initialTime(the initial countdown time) is > 1
 useEffect( ()=>{
-  if(initialTime.init_time === 1)
+  if(initialTime?.init_time === 1)
       animate(false);
 }, [animate, initialTime] );
 
@@ -47,11 +48,11 @@ useEffect( ()=>{
 }, [setGetReady, time] );
 
 //checks if init_time is 1, if it is then set displayTime to true, which will display the light_timer countdown and hide the init_time countdown
-//uses the state of checkTime to display either init_time or time
+//use the state of checkTime to display either init_time or time
 useEffect( ()=>{
-    if(init_time === 1)
+    if(initialTime?.init_time === 1)
       display( true);
-}, [init_time, display]);
+}, [initialTime, display]);
 
 // if displayTime is true, then, the initial_time had finished counting. Display the light_timer(the light countdown time) and start countdown
 useEffect( ()=>{
@@ -86,11 +87,11 @@ useEffect( ()=>{
       }, 1000 );
    return  ()=> clearInterval(stopIntava);
   }
-},[displayTime, time, handleLightToggle] );
+},[displayTime, time, handleLightToggle, setLight_timer] );
 
   return (
     <div className={styles.timer}>
-       <h1 className={styles.time}>  {displayTime ? time : init_time} </h1>
+       <h1 className={styles.time}>  {displayTime ? time : initialTime?.init_time} </h1>
     </div>
   )
 }
