@@ -40,6 +40,7 @@ const Layout = () => {
   function handleSwitchOffButton() {   
       setSwitches(false);
       setIsAnimate(false);
+      setLight_timer( {time : 36} );
       setDisplayTime( false);
   }        
 
