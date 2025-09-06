@@ -36,7 +36,7 @@ const Layout = () => {
       setInitialTime( {init_time : 15} );
   }     
 
-   //At the click of the OFF button, set switches to true
+   //At the click of the OFF button, set switches to false
   function handleSwitchOffButton() {   
       setSwitches(false);
       setIsAnimate(false);
